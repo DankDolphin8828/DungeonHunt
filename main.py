@@ -2,7 +2,6 @@ import random
 import time
 from socket import setdefaulttimeout
 
-# This is to check what type of seed it is
 def roomTest():
   if int1 == 1: # This checks for the type of room, also known as seed number. It can be 0 - 9, and each number has its own room type
     print('This is a "Safe" room')
@@ -38,6 +37,72 @@ def roomTest():
 #  Make decoded outputs - DONE
 #  Make "game"
 #  Document and comment on code so I actualy know what I'm reading lol
+
+def statView():
+  global strength
+  global defence
+  global luck
+  global statPoints
+  statRepeat = 1
+  while statRepeat == 1: # Keeps character screen open till finished
+    print('\u001b[34m') # Just text
+    print(name) # Just text
+    print('===================') # Just text
+    print('\u001b[0m') # Just text
+    print('\u001b[31mStr\u001b[0m:', strength) # Shows Strength Stat
+    print('\u001b[36mDef\u001b[0m:', defence) # Shows Defence Stat
+    print('\u001b[32mLuck\u001b[0m:', luck) # shows luck stat
+    print('You have\u001b[33m', statPoints, '\u001b[0mStat Points to spend\nPlease select the stat you want to increase. type end to resume.') # Shows how many stat points you have, and prompts you to use them
+    statChoice = input('\n\u001b[33mstats\u001b[0m>> ') # the "terminal"
+  
+    if statChoice == 'str': # Checks if the user types "str"
+      print('How many points do you want to spend?') # Just text
+      statAdd = input('\n\u001b[33mstats\u001b[0m>> ') # the "terminal"
+      if int(statAdd) > int(statPoints): # if you have less stat points than you want to spend
+        print("You don't have that many points!") # Just text
+        time.sleep(0.5) # Waits 0.5 seconds
+      elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
+        strength = int(strength) + int(statAdd) # Sets strength stat
+        statPoints = int(statPoints) - int(statAdd) # removes stat points
+      for space in range(20): # Runs for 20x
+          print('\n') # Prints new line
+    if statChoice == 'def': # Checks if the user types "def"
+      print('How many points do you want to spend?') # Just text
+      statAdd = input('\n\u001b[33mstats\u001b[0m>> ') # the "terminal"
+      if int(statAdd) > int(statPoints): # if you have less stat points than you want to spend
+        print("You don't have that many points!") # Just text
+        time.sleep(0.5) # Waits 0.5 seconds
+      elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
+        defence = int(defence) + int(statAdd) # Sets Defence stat
+        statPoints = int(statPoints) - int(statAdd) # removes stat points
+      for space in range(20): # Runs for 20x
+          print('\n') # Prints new line
+        
+    if statChoice == 'luck': # Checks if the user types "luck"
+      print('How many points do you want to spend?') # Just text
+      statAdd = input('\n\u001b[33mstats\u001b[0m>> ') # the "terminal"
+      if int(statAdd) > int(statPoints): # if you have less stat points than you want to spend
+        print("You don't have that many points!") # Just text
+        time.sleep(0.5) # Waits 0.5 seconds
+      elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
+        luck = int(defence) + int(statAdd) # Sets Luck stat
+        statPoints = int(statPoints) - int(statAdd)# removes stat points
+      for space in range(20): # Runs for 20x
+          print('\n') # Prints new line
+        
+    if statChoice == 'end':
+      statRepeat = 0
+
+
+
+
+
+terminalRepeat = 1 # The repeat variable
+statRepeat = 1 # The repeat variable
+strength = 0 # Base Strength Stat
+defence = 0 # Base Defence Stat
+luck = 0 # Base Luck Stat
+statPoints = 20 # Base Stat Points
 x = 0
 seedChoose = 0 # a boolian statment asking if the user wants to choose their seed (This is just for initalization)
 seedBit = 0 # amount of time the decoder will repeat (This is just for initalization)
@@ -49,7 +114,6 @@ minRoom = 1  # Min amount of rooms you can choose to spawn
 
 roomBitCount = 0 # (This is just for initalization)
 roomRoll = random.randint(1,3) # The roll chance for room type (This is just for initalization)
-
 seedChooseTest = input('Do you want to use a custom seed? y or n: ')
 if seedChooseTest == 'y': # Checks if the user typed 'y'
   seedChoose = 1 # Sets seedChoose to 1
@@ -162,6 +226,66 @@ for num in range(50):
   ## START OF GAME STUFF!
 print('Game Start!') # This is all temporary, untill I get a buddy to do some story design!
 
+
+
+while statRepeat == 1: # Keeps character screen open till finished
+  print('\u001b[34m') # Just text
+  print('Make your character') # Just text
+  print('===================') # Just text
+  print('\u001b[0m') # Just text
+  print('\u001b[31mStr\u001b[0m:', strength) # Shows Strength Stat
+  print('\u001b[36mDef\u001b[0m:', defence) # Shows Defence Stat
+  print('\u001b[32mLuck\u001b[0m:', luck) # Shows Luck Stat
+  print('You have\u001b[33m', statPoints, '\u001b[0mStat Points to spend\nPlease select the stat you want to increase.') # Shows how many stat points you have, and prompts you to use them
+  statChoice = input('>> ') # the "terminal"
+
+  if statChoice == 'str': # Checks if the user types "str"
+    print('How many points do you want to spend?') # Just text
+    statAdd = input('>> ') # the "terminal"
+    if int(statAdd) > int(statPoints): # if you have less stat points than you want to spend
+      print("You don't have that many points!") # Just text
+      time.sleep(0.5) # Waits 0.5 seconds
+    elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
+      strength = int(strength) + int(statAdd) # Sets strength stat
+      statPoints = int(statPoints) - int(statAdd) # removes stat points
+    for space in range(20): # Runs for 20x
+        print('\n') # Prints new line
+  if statChoice == 'def': # Checks if the user types "def"
+    print('How many points do you want to spend?') # Just text
+    statAdd = input('>> ') # the "terminal"
+    if int(statAdd) > int(statPoints): # if you have less stat points than you want to spend
+      print("You don't have that many points!") # Just text
+      time.sleep(0.5) # Waits 0.5 seconds
+    elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
+      defence = int(defence) + int(statAdd) # Sets Defence stat
+      statPoints = int(statPoints) - int(statAdd) # removes stat points
+    for space in range(20): # Runs for 20x
+        print('\n') # Prints new line
+      
+  if statChoice == 'luck': # Checks if the user types "luck"
+    print('How many points do you want to spend?') # Just text
+    statAdd = input('>> ') # the "terminal"
+    if int(statAdd) > int(statPoints): # if you have less stat points than you want to spend
+      print("You don't have that many points!") # Just text
+      time.sleep(0.5) # Waits 0.5 seconds
+    elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
+      luck = int(defence) + int(statAdd) # Sets Luck stat
+      statPoints = int(statPoints) - int(statAdd)# removes stat points
+    for space in range(20): # Runs for 20x
+        print('\n') # Prints new line
+
+  if statPoints <= 0: # Checks if you are out of stat points
+    print('Enter name')
+    name = input('>> ')
+    print('**All points used, starting story**') # Just text
+    statRepeat = 0 # Ends loop
+    time.sleep(1) # Waits 1 second
+    for space in range(20): # Runs 20x
+      print('\n') # Prints new line
+
+## FIRST ROOM
+print('This is where the first room will begin') # Filler text
+
 ## ROOM DECODER - First Room
 num = int(roomList[0])
 
@@ -169,57 +293,12 @@ int1 = (num % 1000) // 100
 int2 = (num % 100) // 10
 int3 = (num % 10)
 
-statRepeat = 1
-strength = 0
-defence = 0
-luck = 0
-statPoints = 20
-
-while statRepeat == 1:
-  print('\u001b[34m')
-  print('Make your character')
-  print('===================')
-  print('\u001b[0m')
-  print('\u001b[31mStr\u001b[0m:', strength)
-  print('\u001b[36mDef\u001b[0m:', defence)
-  print('\u001b[32mLuck\u001b[0m:', luck)
-  print('You have\u001b[33m', statPoints, '\u001b[0mStat Points to spend\nPlease select the stat you want to increase')
-  statChoice = input('>> ')
-
-  if statChoice == 'str':
-    print('How many points do you want to spend?')
-    statAdd = input('>> ')
-    if int(statAdd) > int(statPoints):
-      print("You don't have that many points!")
-      time.sleep(0.5)
-    elif int(statAdd) <= int(statPoints):
-      strength = int(strength) + int(statAdd)
-      statPoints = int(statPoints) - int(statAdd)
-
-  if statChoice == 'def':
-    print('How many points do you want to spend?')
-    statAdd = input('>> ')
-    if int(statAdd) > int(statPoints):
-      print("You don't have that many points!")
-      time.sleep(0.5)
-    elif int(statAdd) <= int(statPoints):
-      defence = int(defence) + int(statAdd)
-      statPoints = int(statPoints) - int(statAdd)
+print("Hi! This is an unfinished part of the game!\nOh, what am I doing here?\nWhy I'm here to test the terminal!")
+while terminalRepeat == 1:
+  terminalInput = input('>> ')
+  if terminalInput == 'stats':
+    statView()
     for space in range(20):
-        print('\n')
-      
-  if statChoice == 'luck':
-    print('How many points do you want to spend?')
-    statAdd = input('>> ')
-    if int(statAdd) > int(statPoints):
-      print("You don't have that many points!")
-      time.sleep(0.5)
-    elif int(statAdd) <= int(statPoints):
-      luck = int(defence) + int(statAdd)
-      statPoints = int(statPoints) - int(statAdd)
-    for space in range(20):
-        print('\n')
-
-  elif statPoints <= 0:
-    print('**All points used, starting story**')
-    statRepeat = 0
+      print('\n')
+    print('**Exited Stats**\n')
+    print("Hi! This is an unfinished part of the game!\nOh, what am I doing here?\nWhy I'm here to test the terminal!")
