@@ -3,6 +3,40 @@ import random
 import time
 from socket import setdefaulttimeout
 
+## INITALIZING VARIABLES ##
+name = '[null]' # Initalizing name variable - This is the "blank" character name
+
+terminalRepeat = 1 # Initalizing the terminalRepeat variable - This is the true / false statment for the repeating terminal
+statRepeat = 1 # Initalizing the statRepeat - This is the true / false statment for the repeating stat terminal
+
+x = 0 #...
+
+seedChoose = 0 # Initalizing the seedChoose variable - This is the true / false statment for if the user has a custom seed
+
+seedBit = 0 # Initalizing the seedBit variable - This is the varible describing how many rooms there are in the dungeon
+
+roomBreakDown = list() # Initalizing the roomBreakDown list - This is an unused list... huh
+
+roomList = list() # Initalizing the roomList list - This is the "Encoded" room data
+
+roomBitCount = 0 # Initalizing the roomBitCount variable - This is the variable that is encoded in roomList to show what room number it is
+
+roomRoll = 1 # Initalizing the roomRoll variable - This is the randomizer for the room variations
+
+## SETTINGS ##
+level = 0 # Setting level variable - How to set the starting level of user
+
+health = 60 # Setting health variable - How to set the base health of user
+healthPool = 60 # Setting healthPool variable - How to set the base health-pool of user
+
+strength = random.randint(0, 9) # Setting strength variable - How to set the base strength of user - Randomize?
+defence = random.randint(0, 9) # Setting defence variable - How to set the base defence of user - Randomize?
+luck = random.randint(0, 9) # Setting luck variable - How to set the base luck of user - Randomize?
+statPoints = 20 # Setting statPoints variable - How to set the begining stat points for character creation
+
+maxRoom = 1500 # Setting maxRoom variable - How to set the maximum number of rooms in the dungeon
+minRoom = 1  # Setting minRoom variable - How to set the minimum number of rooms in the dungeon
+
 def levelUp():
   global level
   global statPoints
@@ -107,26 +141,7 @@ def statCall():
     if statChoice == 'end':
       statRepeat = 0
 
-name = '[null]'
-terminalRepeat = 1 # The repeat variable
-statRepeat = 1 # The repeat variable
-level = 0
-health = 60
-strength = 0 # Base Strength Stat
-defence = 0 # Base Defence Stat
-luck = 0 # Base Luck Stat
-statPoints = 20 # Base Stat Points
-x = 0
-seedChoose = 0 # a boolian statment asking if the user wants to choose their seed (This is just for initalization)
-seedBit = 0 # amount of time the decoder will repeat (This is just for initalization)
-roomBreakDown = list()
-roomList = list() # the encoded room data
 
-maxRoom = 1500 # Max amount of rooms you can choose to spawn
-minRoom = 1  # Min amount of rooms you can choose to spawn
-
-roomBitCount = 0 # (This is just for initalization)
-roomRoll = random.randint(1,3) # The roll chance for room type (This is just for initalization)
 seedChooseTest = input('Do you want to use a custom seed? y or n: ')
 if seedChooseTest == 'y': # Checks if the user typed 'y'
   seedChoose = 1 # Sets seedChoose to 1
@@ -149,11 +164,6 @@ if seedChoose == 0: # Checks if user wants to pick a seed
     print(seedBit, 'is less than minimum rooms') # Tells the user that the number it too small
     seedBit = minRoom # sets the number of rooms to the min room number
 
-## TODO:
-#  Make seed decoder algorithem
-#  Make decoded outputs
-#  Make "game"
-#  Document and comment on code so I actualy know what im reading lol
 if seedChoose ==1: # Checks if user wants to pick a seed
   seedOutput = list(str(input('Enter Seed: ')))
   
