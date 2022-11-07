@@ -1,0 +1,4 @@
+TODO:
+1 - Finish start for every variant of seed 1, start (1 / 3)
+2 - Begin story for every variant of story, (0 / 3)
+3 - Finish combat system (0 / 1)

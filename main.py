@@ -1,7 +1,19 @@
+import os
 import random
 import time
 from socket import setdefaulttimeout
 
+def levelUp():
+  global level
+  global statPoints
+
+  level = level + 1
+  statPoints = statPoints + 5
+  print('You are level', level)
+def statPointAdd():
+  global statPoints
+  statPoints = statPoints + 10
+  print('You now have', statPoints, 'stat points')
 def roomTest():
   if int1 == 1: # This checks for the type of room, also known as seed number. It can be 0 - 9, and each number has its own room type
     print('This is a "Safe" room')
@@ -37,8 +49,11 @@ def roomTest():
 #  Make decoded outputs - DONE
 #  Make "game"
 #  Document and comment on code so I actualy know what I'm reading lol
-
-def statView():
+def statCall():
+  global healthTick
+  global name
+  global level
+  global health
   global strength
   global defence
   global luck
@@ -46,13 +61,14 @@ def statView():
   statRepeat = 1
   while statRepeat == 1: # Keeps character screen open till finished
     print('\u001b[34m') # Just text
-    print(name) # Just text
+    print(name, '\u001b[32mLvl\u001b[0m:', level) # Just text
     print('===================') # Just text
-    print('\u001b[0m') # Just text
-    print('\u001b[31mStr\u001b[0m:', strength) # Shows Strength Stat
-    print('\u001b[36mDef\u001b[0m:', defence) # Shows Defence Stat
-    print('\u001b[32mLuck\u001b[0m:', luck) # shows luck stat
-    print('You have\u001b[33m', statPoints, '\u001b[0mStat Points to spend\nPlease select the stat you want to increase. type end to resume.') # Shows how many stat points you have, and prompts you to use them
+    print('\u001b[31mHealth\u001b[0m:  ', health) # Just text
+    print('\u001b[31mStr\u001b[0m:     ', strength) # Shows Strength Stat
+    print('\u001b[36mDef\u001b[0m:     ', defence) # Shows Defence Stat
+    print('\u001b[32mLuck\u001b[0m:    ', luck) # shows luck stat
+    print('Stat Pts:\u001b[33m', statPoints, '\u001b[0m') # Shows how many stat points you have, and prompts you to use them
+    print('===================')
     statChoice = input('\n\u001b[33mstats\u001b[0m>> ') # the "terminal"
   
     if statChoice == 'str': # Checks if the user types "str"
@@ -64,8 +80,8 @@ def statView():
       elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
         strength = int(strength) + int(statAdd) # Sets strength stat
         statPoints = int(statPoints) - int(statAdd) # removes stat points
-      for space in range(20): # Runs for 20x
-          print('\n') # Prints new line
+      os.system('clear')
+
     if statChoice == 'def': # Checks if the user types "def"
       print('How many points do you want to spend?') # Just text
       statAdd = input('\n\u001b[33mstats\u001b[0m>> ') # the "terminal"
@@ -75,8 +91,7 @@ def statView():
       elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
         defence = int(defence) + int(statAdd) # Sets Defence stat
         statPoints = int(statPoints) - int(statAdd) # removes stat points
-      for space in range(20): # Runs for 20x
-          print('\n') # Prints new line
+      os.system('clear')
         
     if statChoice == 'luck': # Checks if the user types "luck"
       print('How many points do you want to spend?') # Just text
@@ -85,20 +100,18 @@ def statView():
         print("You don't have that many points!") # Just text
         time.sleep(0.5) # Waits 0.5 seconds
       elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
-        luck = int(defence) + int(statAdd) # Sets Luck stat
+        luck = int(luck) + int(statAdd) # Sets Luck stat
         statPoints = int(statPoints) - int(statAdd)# removes stat points
-      for space in range(20): # Runs for 20x
-          print('\n') # Prints new line
+      os.system('clear')
         
     if statChoice == 'end':
       statRepeat = 0
 
-
-
-
-
+name = '[null]'
 terminalRepeat = 1 # The repeat variable
 statRepeat = 1 # The repeat variable
+level = 0
+health = 60
 strength = 0 # Base Strength Stat
 defence = 0 # Base Defence Stat
 luck = 0 # Base Luck Stat
@@ -221,8 +234,7 @@ for num in list(roomList): # This whole block is for development
   print('Room Type', int1,'\nRoom Variant', int2, '\nRoom Number', int3)#!
   x = x + 1#!
 
-for num in range(50):
-  print('\n')
+os.system('clear')
   ## START OF GAME STUFF!
 print('Game Start!') # This is all temporary, untill I get a buddy to do some story design!
 
@@ -248,8 +260,8 @@ while statRepeat == 1: # Keeps character screen open till finished
     elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
       strength = int(strength) + int(statAdd) # Sets strength stat
       statPoints = int(statPoints) - int(statAdd) # removes stat points
-    for space in range(20): # Runs for 20x
-        print('\n') # Prints new line
+    os.system('clear')
+
   if statChoice == 'def': # Checks if the user types "def"
     print('How many points do you want to spend?') # Just text
     statAdd = input('>> ') # the "terminal"
@@ -259,8 +271,7 @@ while statRepeat == 1: # Keeps character screen open till finished
     elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
       defence = int(defence) + int(statAdd) # Sets Defence stat
       statPoints = int(statPoints) - int(statAdd) # removes stat points
-    for space in range(20): # Runs for 20x
-        print('\n') # Prints new line
+    os.system('clear')
       
   if statChoice == 'luck': # Checks if the user types "luck"
     print('How many points do you want to spend?') # Just text
@@ -269,19 +280,17 @@ while statRepeat == 1: # Keeps character screen open till finished
       print("You don't have that many points!") # Just text
       time.sleep(0.5) # Waits 0.5 seconds
     elif int(statAdd) <= int(statPoints): # if you have more than or the same amount that you want to spend
-      luck = int(defence) + int(statAdd) # Sets Luck stat
+      luck = int(luck) + int(statAdd) # Sets Luck stat
       statPoints = int(statPoints) - int(statAdd)# removes stat points
-    for space in range(20): # Runs for 20x
-        print('\n') # Prints new line
+    os.system('clear')
 
   if statPoints <= 0: # Checks if you are out of stat points
-    print('Enter name')
-    name = input('>> ')
-    print('**All points used, starting story**') # Just text
+    print('Enter name') # Asks for character name
+    name = input('>> ') # Terminal
+    print('**Character Created, Starting Story**') # Just text
     statRepeat = 0 # Ends loop
     time.sleep(1) # Waits 1 second
-    for space in range(20): # Runs 20x
-      print('\n') # Prints new line
+    os.system('clear')
 
 ## FIRST ROOM
 print('This is where the first room will begin') # Filler text
@@ -293,12 +302,138 @@ int1 = (num % 1000) // 100
 int2 = (num % 100) // 10
 int3 = (num % 10)
 
-print("Hi! This is an unfinished part of the game!\nOh, what am I doing here?\nWhy I'm here to test the terminal!")
-while terminalRepeat == 1:
-  terminalInput = input('>> ')
-  if terminalInput == 'stats':
-    statView()
-    for space in range(20):
-      print('\n')
-    print('**Exited Stats**\n')
-    print("Hi! This is an unfinished part of the game!\nOh, what am I doing here?\nWhy I'm here to test the terminal!")
+int2 = 1 ## TEMP ##
+if int2 == 1:
+  print('A few day ago in a bar you \nheard about a strange cave out\nin the woods. With the promise\nof loot, you head out in \nsearch of the cave.\n\n"Hey %s, come over here!\nI think I found it!' % name) # 30 characters
+  print('Type "start" to begin the game.')
+
+
+  while terminalRepeat == 1: # Terminal Repeat
+    terminalInput = input('>> ') # Terminal
+    if terminalInput == 'stats': # When you enter stats it will open the stats menu
+      statCall() # opens stats
+      os.system('clear')
+      print('**Exited Stats**\n') # Just text
+      print('A few day ago in a bar you \nheard about a strange cave out\nin the woods. With the promise\nof loot, you head out in \nsearch of the cave.\n\n"Hey %s, come over here!\nI think I found it!' % name) # 30 characters
+      print('Type "start" to begin the game.')
+      time.sleep(0.5)
+      os.system('clear')
+      print('A few day ago in a bar you \nheard about a strange cave out\nin the woods. With the promise\nof loot, you head out in \nsearch of the cave.\n\n"Hey %s, come over here!\nI think I found it!' % name) # 30 characters
+      print('Type "start" to begin the game.')
+    elif terminalInput == 'roomTest':
+      roomTest()
+    elif terminalInput == 'FreeTen':
+      statPointAdd()
+  
+    elif terminalInput == 'levelUp':
+      levelUp()
+
+    elif terminalInput == 'start':
+      terminalRepeat = 0
+      os.system('clear')
+      print('As you walk down the hill to where you heard you friend, Mark.\nIn front of Mark there is an anchint looking temple\n"This is the place!" Mark says\nDo you enter? ("y" or "n")')
+      terminalRepeat = 1
+      while terminalRepeat == 1: # Terminal Repeat
+        terminalInput = input('>> ') # Terminal
+        if terminalInput == 'stats': # When you enter stats it will open the stats menu
+            statCall() # opens stats
+            os.system('clear')
+            print('**Exited Stats**\n') # Just text
+            print('As you walk down the hill to where you heard you friend, Mark.\nIn front of Mark there is an anchint looking temple\n"This is the place!" Mark says\nDo you enter? ("y" or "n")') # 30 characters
+            time.sleep(0.5)
+            os.system('clear')
+            print('As you walk down the hill to where you heard you friend, Mark.\nIn front of Mark there is an anchint looking temple\n"This is the place!" Mark says\nDo you enter? ("y" or "n")') # 30 characters
+            
+        elif terminalInput == 'FreeTen':
+            statPointAdd()
+        
+        elif terminalInput == 'levelUp':
+            levelUp()
+        elif terminalInput == 'roomTest':
+          roomTest()
+        elif terminalInput == 'y':
+          terminalRepeat = 0
+          os.system('clear')
+          print('This is the yes answer')
+
+        elif terminalInput == 'n':
+          terminalRepeat = 0
+          os.system('clear')
+          print('This is the no answer')
+        elif terminalInput == 'end':
+          print('**Bye**')
+          terminalRepeat = 0
+        else:
+          os.system('clear')
+          print('As you walk down the hill to where you heard you friend, Mark.\nIn front of Mark there is an anchint looking temple\n"This is the place!" Mark says\nDo you enter? ("y" or "n")')
+      
+    elif terminalInput == 'end':
+      print('**Bye**')
+      terminalRepeat = 0
+    else:
+      os.system('clear')
+      print('A few day ago in a bar you \nheard about a strange cave out\nin the woods. With the promise\nof loot, you head out in \nsearch of the cave.\n\n"Hey %s, come over here!\nI think I found it!' % name) # 30 characters
+      print('Type "start" to begin the game.')
+      
+if int2 == 2:
+  print('This is the second variation')
+  print('Room 1, Seed 1, Variant 2')
+  while terminalRepeat == 1: # Terminal Repeat
+    terminalInput = input('>> ') # Terminal
+    if terminalInput == 'stats': # When you enter stats it will open the stats menu
+      statCall() # opens stats
+      os.system('clear')
+      print('**Exited Stats**\n') # Just text
+      print("This is the second variation") # Just text
+      time.sleep(0.5)
+      os.system('clear')
+      print("This is the second variation") # Just text
+  
+    elif terminalInput == 'FreeTen':
+      statPointAdd()
+  
+    elif terminalInput == 'levelUp':
+      levelUp()
+
+    elif terminalInput == 'start':
+      os.system('clear')
+      print('This is where the game will start')
+      terminalRepeat = 0
+  
+    elif terminalInput == 'end':
+      print('**Bye**')
+      terminalRepeat = 0
+    else:
+      os.system('clear')
+
+if int2 == 3:
+  print('This is the third variation')
+  print('Room 1, Seed 1, Variant 3')
+  while terminalRepeat == 1: # Terminal Repeat
+    terminalInput = input('>> ') # Terminal
+    if terminalInput == 'stats': # When you enter stats it will open the stats menu
+      statCall() # opens stats
+      os.system('clear')
+      print('**Exited Stats**\n') # Just text
+      print("This is the third variation") # Just text
+      time.sleep(0.5)
+      os.system('clear')
+      print("This is the third variation") # Just text
+  
+    elif terminalInput == 'FreeTen':
+      statPointAdd()
+  
+    elif terminalInput == 'levelUp':
+      levelUp()
+
+    elif terminalInput == 'start':
+      os.system('clear')
+      print('This is where the game will start')
+      terminalRepeat = 0
+    
+    elif terminalInput == 'end':
+      print('**Bye**')
+      terminalRepeat = 0
+    
+    else:
+      os.system('clear')
